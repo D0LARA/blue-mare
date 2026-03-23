@@ -1,18 +1,6 @@
 import { useState } from "react";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
-
-const images = [
-  { alt: "Panoramic sea view from the studio balcony", label: "Sea View" },
-  { alt: "Modern studio interior with coastal decor", label: "Interior" },
-  { alt: "Private balcony with sea-view seating", label: "Balcony" },
-  { alt: "Clean modern bathroom", label: "Bathroom" },
-  { alt: "Fully equipped kitchenette", label: "Kitchenette" },
-  { alt: "Comfortable king-size bed", label: "Bedroom" },
-  { alt: "Sunset over the Black Sea from the terrace", label: "Sunset" },
-  { alt: "Sandy beach near the studio", label: "Beach" },
-  { alt: "Workspace desk with a view", label: "Workspace" },
-  { alt: "Building exterior and surroundings", label: "Exterior" },
-];
+import { useLanguage } from "@/i18n/LanguageContext";
 
 const placeholderColors = [
   "from-[hsl(198,40%,25%)] to-[hsl(198,45%,35%)]",
@@ -29,10 +17,11 @@ const placeholderColors = [
 
 const Gallery = () => {
   const [lightbox, setLightbox] = useState<number | null>(null);
+  const { t } = useLanguage();
 
   const navigate = (dir: number) => {
     if (lightbox === null) return;
-    setLightbox((lightbox + dir + images.length) % images.length);
+    setLightbox((lightbox + dir + t.gallery.labels.length) % t.gallery.labels.length);
   };
 
   return (
@@ -40,33 +29,32 @@ const Gallery = () => {
       <div className="container mx-auto px-4 md:px-8 max-w-6xl">
         <div className="text-center mb-14">
           <h2 className="font-display text-3xl md:text-4xl font-semibold text-foreground mb-4">
-            Gallery
+            {t.gallery.title}
           </h2>
           <p className="text-foreground/60 font-body max-w-xl mx-auto">
-            Take a closer look at your future retreat by the sea.
+            {t.gallery.description}
           </p>
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4">
-          {images.map((img, i) => (
+          {t.gallery.labels.map((label, i) => (
             <button
               key={i}
               onClick={() => setLightbox(i)}
               className={`relative aspect-[4/3] rounded-xl overflow-hidden group cursor-pointer bg-gradient-to-br ${placeholderColors[i]} ${
                 i === 0 ? "md:col-span-2 md:row-span-2 aspect-square" : ""
               }`}
-              aria-label={`View ${img.label}`}
+              aria-label={`View ${label}`}
             >
               <div className="absolute inset-0 bg-background/20 group-hover:bg-background/10 transition-colors duration-300" />
               <div className="absolute bottom-3 left-3 text-xs font-body text-foreground/80 bg-background/40 backdrop-blur-sm px-2 py-1 rounded-md">
-                {img.label}
+                {label}
               </div>
             </button>
           ))}
         </div>
       </div>
 
-      {/* Lightbox */}
       {lightbox !== null && (
         <div
           className="fixed inset-0 z-50 flex items-center justify-center bg-background/95 backdrop-blur-sm"
@@ -78,7 +66,7 @@ const Gallery = () => {
           <button
             onClick={(e) => { e.stopPropagation(); setLightbox(null); }}
             className="absolute top-4 right-4 text-foreground/70 hover:text-foreground z-10"
-            aria-label="Close lightbox"
+            aria-label={t.gallery.closeLightbox}
           >
             <X size={28} />
           </button>
@@ -86,7 +74,7 @@ const Gallery = () => {
           <button
             onClick={(e) => { e.stopPropagation(); navigate(-1); }}
             className="absolute left-4 text-foreground/70 hover:text-foreground"
-            aria-label="Previous image"
+            aria-label={t.gallery.prevImage}
           >
             <ChevronLeft size={36} />
           </button>
@@ -97,8 +85,8 @@ const Gallery = () => {
           >
             <div className="flex items-center justify-center h-full text-foreground/60 font-body">
               <div className="text-center">
-                <p className="text-lg font-medium">{images[lightbox].label}</p>
-                <p className="text-sm mt-1">{images[lightbox].alt}</p>
+                <p className="text-lg font-medium">{t.gallery.labels[lightbox]}</p>
+                <p className="text-sm mt-1">{t.gallery.alts[lightbox]}</p>
               </div>
             </div>
           </div>
@@ -106,13 +94,13 @@ const Gallery = () => {
           <button
             onClick={(e) => { e.stopPropagation(); navigate(1); }}
             className="absolute right-4 text-foreground/70 hover:text-foreground"
-            aria-label="Next image"
+            aria-label={t.gallery.nextImage}
           >
             <ChevronRight size={36} />
           </button>
 
           <div className="absolute bottom-6 text-foreground/50 text-sm font-body">
-            {lightbox + 1} / {images.length}
+            {lightbox + 1} / {t.gallery.labels.length}
           </div>
         </div>
       )}
