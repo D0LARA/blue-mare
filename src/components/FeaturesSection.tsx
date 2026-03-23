@@ -1,51 +1,26 @@
 import { Heart, MapPin, Sparkles } from "lucide-react";
+import { useLanguage } from "@/i18n/LanguageContext";
 
-const features = [
-  {
-    icon: Heart,
-    title: "Comfort",
-    points: [
-      "King-size bed with premium linens",
-      "Fully air-conditioned throughout",
-      "Modern kitchenette & bathroom",
-      "Smart TV with streaming apps",
-      "Complimentary toiletries & towels",
-    ],
-  },
-  {
-    icon: MapPin,
-    title: "Location",
-    points: [
-      "Steps from the Black Sea shore",
-      "Quiet coastal town atmosphere",
-      "Walking distance to cafés & shops",
-      "Easy access to scenic promenades",
-      "Well-connected by coastal road",
-    ],
-  },
-  {
-    icon: Sparkles,
-    title: "Experience",
-    points: [
-      "Wake up to stunning sea views",
-      "Watch sunsets from your balcony",
-      "Self check-in for total flexibility",
-      "Responsive & attentive host",
-      "Perfect for couples & remote workers",
-    ],
-  },
-];
+const featureIcons = [Heart, MapPin, Sparkles];
 
 const FeaturesSection = () => {
+  const { t } = useLanguage();
+
+  const features = [
+    { ...t.features.comfort, icon: featureIcons[0] },
+    { ...t.features.location, icon: featureIcons[1] },
+    { ...t.features.experience, icon: featureIcons[2] },
+  ];
+
   return (
     <section id="features" className="py-20 md:py-28 bg-card/30">
       <div className="container mx-auto px-4 md:px-8 max-w-6xl">
         <div className="text-center mb-14">
           <h2 className="font-display text-3xl md:text-4xl font-semibold text-foreground mb-4">
-            Why Stay Here
+            {t.features.title}
           </h2>
           <p className="text-foreground/60 font-body max-w-xl mx-auto">
-            More than a place to sleep — it's a place to feel at home by the sea.
+            {t.features.description}
           </p>
         </div>
 
@@ -69,7 +44,7 @@ const FeaturesSection = () => {
         </div>
 
         <p className="text-center text-muted-foreground text-sm font-body mt-10 max-w-lg mx-auto">
-          Trusted by dozens of happy guests — thoughtfully managed with care and attention to every detail.
+          {t.features.trustLine}
         </p>
       </div>
     </section>

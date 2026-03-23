@@ -1,35 +1,44 @@
 import { Facebook, Instagram, Mail, Phone, MapPin } from "lucide-react";
+import { useLanguage } from "@/i18n/LanguageContext";
 
 const Footer = () => {
+  const { t } = useLanguage();
+
+  const quickLinks = [
+    { label: t.nav.about, href: "#about" },
+    { label: t.nav.gallery, href: "#gallery" },
+    { label: t.nav.features, href: "#features" },
+    { label: t.nav.location, href: "#location" },
+    { label: t.nav.reviews, href: "#reviews" },
+    { label: t.nav.faq, href: "#faq" },
+  ];
+
   return (
     <footer className="border-t border-border bg-card/50 py-12">
       <div className="container mx-auto px-4 md:px-8 max-w-6xl">
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-10">
-          {/* Brand */}
           <div>
             <h3 className="font-display text-lg font-semibold text-primary mb-3">Blue Mare</h3>
             <p className="text-sm text-muted-foreground font-body leading-relaxed">
-              Sea View Luxury Studio in Byala, Bulgaria. Your serene escape by the Black Sea.
+              {t.footer.tagline}
             </p>
           </div>
 
-          {/* Quick Links */}
           <div>
-            <h4 className="text-sm font-body font-medium text-foreground mb-3">Quick Links</h4>
+            <h4 className="text-sm font-body font-medium text-foreground mb-3">{t.footer.quickLinks}</h4>
             <ul className="space-y-2 text-sm font-body">
-              {["About", "Gallery", "Features", "Location", "Reviews", "FAQ"].map((link) => (
-                <li key={link}>
-                  <a href={`#${link.toLowerCase()}`} className="text-muted-foreground hover:text-primary transition-colors">
-                    {link}
+              {quickLinks.map((link) => (
+                <li key={link.href}>
+                  <a href={link.href} className="text-muted-foreground hover:text-primary transition-colors">
+                    {link.label}
                   </a>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Contact */}
           <div>
-            <h4 className="text-sm font-body font-medium text-foreground mb-3">Contact</h4>
+            <h4 className="text-sm font-body font-medium text-foreground mb-3">{t.footer.contactTitle}</h4>
             <ul className="space-y-2 text-sm font-body text-muted-foreground">
               <li className="flex items-center gap-2">
                 <Mail size={14} className="text-primary" />
@@ -46,9 +55,8 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Social */}
           <div>
-            <h4 className="text-sm font-body font-medium text-foreground mb-3">Follow Us</h4>
+            <h4 className="text-sm font-body font-medium text-foreground mb-3">{t.footer.followUs}</h4>
             <div className="flex items-center gap-3">
               <a
                 href="https://www.facebook.com/BlueMareByala"
@@ -78,14 +86,14 @@ const Footer = () => {
         </div>
 
         <div className="border-t border-border pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-muted-foreground font-body">
-          <p>© {new Date().getFullYear()} Blue Mare – Sea View Luxury Studio, Byala. All rights reserved.</p>
+          <p>{t.footer.copyright}</p>
           <a
             href="https://www.facebook.com/BlueMareByala"
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-primary transition-colors"
           >
-            Find us on Facebook
+            {t.footer.findOnFacebook}
           </a>
         </div>
       </div>
