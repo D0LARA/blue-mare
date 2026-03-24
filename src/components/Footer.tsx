@@ -42,11 +42,11 @@ const Footer = () => {
             <ul className="space-y-2 text-sm font-body text-muted-foreground">
               <li className="flex items-center gap-2">
                 <Mail size={14} className="text-primary" />
-                <span>hello@bluemare-byala.com</span>
+                <span>bluemare-byala@gmail.com</span>
               </li>
               <li className="flex items-center gap-2">
                 <Phone size={14} className="text-primary" />
-                <span>+359 XX XXX XXXX</span>
+                <span>+359 879 339919</span>
               </li>
               <li className="flex items-center gap-2">
                 <MapPin size={14} className="text-primary" />
@@ -75,7 +75,7 @@ const Footer = () => {
                 <Instagram size={16} />
               </a>
               <a
-                href="mailto:hello@bluemare-byala.com"
+                href="mailto:bluemare-byala@gmail.com"
                 className="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center text-primary hover:bg-primary/20 transition-colors"
                 aria-label="Email"
               >
