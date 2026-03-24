@@ -42,7 +42,7 @@ const Footer = () => {
             <ul className="space-y-2 text-sm font-body text-muted-foreground">
               <li className="flex items-center gap-2">
                 <Mail size={14} className="text-primary" />
-                <span>bluemare-byala@gmail.com</span>
+                <span>yordanov.veco@gmail.com</span>
               </li>
               <li className="flex items-center gap-2">
                 <Phone size={14} className="text-primary" />
@@ -75,7 +75,7 @@ const Footer = () => {
                 <Instagram size={16} />
               </a>
               <a
-                href="mailto:bluemare-byala@gmail.com"
+                href="mailto:yordanov.veco@gmail.com"
                 className="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center text-primary hover:bg-primary/20 transition-colors"
                 aria-label="Email"
               >
