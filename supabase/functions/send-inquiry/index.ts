@@ -71,7 +71,7 @@ serve(async (req) => {
     }
 
     // Notify owner via Lovable AI (compose a formatted notification)
-    const OWNER_EMAIL = "owner@bluemare.com"; // TODO: Replace with real owner email
+    const OWNER_EMAIL = "yordanov.veco@gmail.com";
     const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
 
     if (LOVABLE_API_KEY) {
